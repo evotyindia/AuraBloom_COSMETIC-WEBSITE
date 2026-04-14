@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydrating Cloud Cream - AuraBloom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Kept strictly for any deep JS dependencies if needed (Accordion) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .product-detail-img {
+            width: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Navbar -->
+    <header class="site-header">
+        <div class="custom-container site-nav">
+            <a href="index.html" class="site-logo">
+                <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+            </a>
+            <ul class="site-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" class="active">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="tips.html">Tips</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="site-nav-actions">
+                <a href="products.html" class="custom-btn custom-btn-outline" style="position: relative;">
+                    <i class="fa-solid fa-shopping-cart"></i> Cart
+                    <span id="cart-counter" class="badge" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-light py-4" style="border-bottom: 1px solid #ddd;">
+        <div class="custom-container small text-muted">
+            <a href="index.html" class="text-muted text-decoration-none">Home</a> / 
+            <a href="products.html" class="text-muted text-decoration-none">Skincare</a> / 
+            <span class="text-dark">Hydrating Cloud Cream</span>
+        </div>
+    </div>
+
+    <!-- Product Detail Section -->
+    <section class="custom-container py-5 my-4">
+        <div class="grid-container grid-2 animate-on-scroll">
+            
+            <!-- Left: Images -->
+            <div>
+                <img src="images/moisturizer_1776176468643.png" alt="Hydrating Cloud Cream" class="product-detail-img shadow-sm mb-3">
+                <div style="display: flex; gap: 10px;">
+                    <img src="images/moisturizer_1776176468643.png" style="width: 80px; height: 80px; border-radius: 10px; cursor: pointer; border: 2px solid var(--primary-color);">
+                    <img src="images/image3.png" style="width: 80px; height: 80px; border-radius: 10px; cursor: pointer; border: 1px solid #ddd; object-fit: cover;">
+                </div>
+            </div>
+
+            <!-- Right: Details -->
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-weight: bold; color: var(--primary-color); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Skincare &bull; Bestseller</span>
+                <h1 class="display-5 fw-bold mt-2 mb-2">Hydrating Cloud Cream</h1>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <div style="color: #f5b301; font-size: 1.2rem;">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <span class="ms-2 text-muted" style="text-decoration: underline; cursor: pointer;">(128 Verified Reviews)</span>
+                </div>
+
+                <h2 class="fw-bold mb-4" style="font-size: 2rem;">Rs. 45.00</h2>
+
+                <p class="text-muted" style="line-height: 1.8;">
+                    A deeply nourishing, whipped face cream that locks in long-lasting moisture without ever feeling heavy or greasy. Infused with squalane and vegan ceramides, it instantly plumpens the skin and protects your barrier. Suitable for daily use on all skin types.
+                </p>
+
+                <!-- Action Bar -->
+                <div class="d-flex gap-3 align-items-center my-4 pb-4" style="border-bottom: 1px solid #eee;">
+                    <!-- We add a dedicated container wrapper so the main JS can find the button easily -->
+                    <div style="flex: 1; max-width: 300px;">
+                        <button class="custom-btn custom-btn-outline w-100 add-to-cart-btn" style="padding: 1rem;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Accordion (Using Bootstrap logic preserved from FAQ) -->
+                <div class="accordion accordion-flush" id="productAccordion">
+                    <div class="accordion-item" style="border:none; border-bottom: 1px solid #eee;">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" style="background: none; box-shadow: none; padding: 1rem 0; font-weight: bold;">
+                                Key Ingredients
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#productAccordion">
+                            <div class="accordion-body text-muted pt-0 pb-3 ps-0">
+                                <ul style="padding-left: 20px;">
+                                    <li><strong>Vegan Ceramides:</strong> Help protect and rebuild the skin barrier.</li>
+                                    <li><strong>Squalane:</strong> Derived from olives to provide deep, non-greasy hydration.</li>
+                                    <li><strong>Hyaluronic Acid:</strong> Pulls moisture from the environment into the skin.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item" style="border:none; border-bottom: 1px solid #eee;">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" style="background: none; box-shadow: none; padding: 1rem 0; font-weight: bold;">
+                                How to Use
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#productAccordion">
+                            <div class="accordion-body text-muted pt-0 pb-3 ps-0">
+                                Apply a dime-sized amount to clean fingertips and gently massage into the face and neck using upward motions. Use morning and night for best results.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item" style="border:none; border-bottom: 1px solid #eee;">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" style="background: none; box-shadow: none; padding: 1rem 0; font-weight: bold;">
+                                Shipping & Returns
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#productAccordion">
+                            <div class="accordion-body text-muted pt-0 pb-3 ps-0">
+                                Enjoy free carbon-neutral shipping on orders over Rs. 50.00. We offer a 30-day money-back guarantee if you are not completely satisfied with your purchase.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Footer -->
+    <footer class="site-footer mt-5">
+        <div class="site-footer-logo">
+            <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+        </div>
+        <p class="site-footer-desc">Beauty that Radiates Naturally. Consciously crafted skincare and cosmetics for the modern soul.</p>
+        <div class="site-footer-socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div class="site-footer-links">
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ & Returns</a>
+            <a href="blog.html">Journal</a>
+            <a href="contact.html">Contact Support</a>
+        </div>
+        <p class="small mb-0 mt-4 text-muted">&copy; 2026 AuraBloom Cosmetics. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

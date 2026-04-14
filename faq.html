@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - AuraBloom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Kept specifically for Bootstrap Accordion JS handling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Custom Navbar -->
+    <header class="site-header">
+        <div class="custom-container site-nav">
+            <a href="index.html" class="site-logo">
+                <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+            </a>
+            <ul class="site-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="tips.html">Tips</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="site-nav-actions">
+                <a href="products.html" class="custom-btn custom-btn-outline" style="position: relative;">
+                    <i class="fa-solid fa-shopping-cart"></i> Cart
+                    <span id="cart-counter" class="badge" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header -->
+    <div class="bg-secondary py-5">
+        <div class="custom-container text-center py-4 animate-on-scroll">
+            <h1 class="display-5 fw-bold mb-3">Frequently Asked Questions</h1>
+            <p class="lead mb-0 text-muted mx-auto" style="max-width: 600px;">Everything you need to know about our products, shipping, and returns.</p>
+        </div>
+    </div>
+
+    <!-- FAQ Accordion Container (Utilizes Bootstrap Accordion Collapse JS but Custom Wrapping) -->
+    <section class="custom-container py-5 my-4">
+        <div class="mx-auto" style="max-width: 800px;">
+            <div class="animate-on-scroll">
+                
+                <h4 class="fw-bold mb-4">Product & Ingredients</h4>
+                <div class="accordion mb-5" id="faqProduct">
+                    <!-- Bootstrap Accordion Item logic -->
+                    <div class="accordion-item" style="border:none; border-bottom:1px solid #ddd; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button bg-transparent fw-bold" style="border:none; box-shadow:none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+                                Are AuraBloom products vegan and cruelty-free?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqProduct">
+                            <div class="accordion-body text-muted">
+                                Yes! Every single product developed by AuraBloom is 100% vegan and strictly cruelty-free. We never test on animals and we ensure all our suppliers uphold the same standards.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item" style="border:none; border-bottom:1px solid #ddd; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent fw-bold" style="border:none; box-shadow:none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                Are your products suitable for sensitive skin?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqProduct">
+                            <div class="accordion-body text-muted">
+                                Absolutely. We formulate our products specifically with sensitive skin in mind, omitting harsh chemicals, parabens, and sulfates. However, we always recommend patch-testing new products.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="fw-bold mb-4 mt-5">Shipping & Returns</h4>
+                <div class="accordion" id="faqShipping">
+                    <div class="accordion-item" style="border:none; border-bottom:1px solid #ddd; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent fw-bold" style="border:none; box-shadow:none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                Do you ship internationally?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqShipping">
+                            <div class="accordion-body text-muted">
+                                Yes, we ship to over 50 countries worldwide! Shipping rates and times vary depending on the destination and will be calculated at checkout.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item" style="border:none; border-bottom:1px solid #ddd; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent fw-bold" style="border:none; box-shadow:none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                What is your return policy?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqShipping">
+                            <div class="accordion-body text-muted">
+                                We want you to love your AuraBloom products. If you are not completely satisfied, we accept returns within 30 days of purchase for a full refund (minus shipping fees) on gently used or unused products.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="text-center mt-5 pt-4 animate-on-scroll" style="border-top: 1px solid rgba(0,0,0,0.05);">
+            <h5 class="fw-bold mb-3">Still have questions?</h5>
+            <a href="contact.html" class="custom-btn custom-btn-primary">Contact Support</a>
+        </div>
+    </section>
+
+    <!-- Custom Footer -->
+    <footer class="site-footer">
+        <div class="site-footer-logo">
+            <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+        </div>
+        <p class="site-footer-desc">Beauty that Radiates Naturally. Consciously crafted skincare and cosmetics for the modern soul.</p>
+        <div class="site-footer-socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div class="site-footer-links">
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ & Returns</a>
+            <a href="blog.html">Journal</a>
+            <a href="contact.html">Contact Support</a>
+        </div>
+        <p class="small mb-0 mt-4 text-muted">&copy; 2026 AuraBloom Cosmetics. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

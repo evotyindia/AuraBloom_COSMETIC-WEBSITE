@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Journal - AuraBloom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Custom Navbar -->
+    <header class="site-header">
+        <div class="custom-container site-nav">
+            <a href="index.html" class="site-logo">
+                <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+            </a>
+            <ul class="site-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="tips.html">Tips</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="site-nav-actions">
+                <a href="products.html" class="custom-btn custom-btn-outline" style="position: relative;">
+                    <i class="fa-solid fa-shopping-cart"></i> Cart
+                    <span id="cart-counter" class="badge" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header -->
+    <div class="bg-secondary py-5">
+        <div class="custom-container text-center py-4 animate-on-scroll">
+            <h1 class="display-5 fw-bold mb-3">The Journal</h1>
+            <p class="lead mb-0 text-muted mx-auto" style="max-width: 600px;">Thoughts, tutorials, and deep-dives into all things beauty and wellness.</p>
+        </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <section class="custom-container py-5 my-4">
+        
+        <!-- Featured Full-Width Blog Post -->
+        <div class="animate-on-scroll mb-5">
+            <div class="rounded-4 overflow-hidden shadow position-relative" style="background: #333; color: white;">
+                <img src="images/tips_image_1776176521363.png" alt="Skincare routine" style="height: 400px; width: 100%; object-fit: cover; opacity: 0.5;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem;">
+                    <span style="background-color: var(--primary-color); color: white; padding: 0.5rem 1rem; border-radius: 5px; width: fit-content; margin-bottom: 1rem; font-weight: bold; font-size: 0.9rem;">Skincare Science</span>
+                    <h2 class="fw-bold" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Why Hyaluronic Acid is the Key to Glass Skin</h2>
+                    <p class="lead d-none d-md-block" style="color: #ddd;">We break down exactly how this miracle ingredient works and how to incorporate it into your routine effectively.</p>
+                    <p class="small mb-0 mt-3 pt-3 w-100" style="border-top: 1px solid rgba(255,255,255,0.2);">By Dr. Aryan Yadav &bull; April 10, 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-container grid-3">
+            <!-- Standard Grid Posts -->
+            <div class="animate-on-scroll">
+                <div class="bg-white rounded-4 shadow-sm h-100 border" style="overflow: hidden; display: flex; flex-direction: column;">
+                    <img src="images/about_image_1776176504159.png" style="width: 100%; height: 260px; object-fit: cover;" alt="Community">
+                    <div class="p-4 text-center d-flex flex-column" style="flex: 1;">
+                        <span style="text-transform: uppercase; color: var(--primary-color); font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">Behind the Brand</span>
+                        <h4 class="fw-bold mt-2 mb-3">Our Promise to the Planet</h4>
+                        <p class="text-muted small">How AuraBloom is reducing carbon footprint through our new packaging initiative starting this summer.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="blog-post.html" class="custom-btn custom-btn-outline" style="padding: 0.4rem 1rem; font-size: 0.875rem;">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animate-on-scroll" style="animation-delay: 0.1s;">
+                <div class="bg-white rounded-4 shadow-sm h-100 border" style="overflow: hidden; display: flex; flex-direction: column;">
+                    <img src="images/file_blog.png" style="width: 100%; height: 260px; object-fit: cover;" alt="Makeup Pattern">
+                    <div class="p-4 text-center d-flex flex-column" style="flex: 1;">
+                        <span style="text-transform: uppercase; color: var(--primary-color); font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">Tutorials</span>
+                        <h4 class="fw-bold mt-2 mb-3">The 5-Minute Minimalist Makeup Look</h4>
+                        <p class="text-muted small">Running late? Here’s how you can achieve a flawless, fresh-faced look using only three products.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="blog-post.html" class="custom-btn custom-btn-outline" style="padding: 0.4rem 1rem; font-size: 0.875rem;">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                <div class="bg-white rounded-4 shadow-sm h-100 border" style="overflow: hidden; display: flex; flex-direction: column;">
+                    <img src="images/tips_image_1776176521363.png" style="width: 100%; height: 260px; object-fit: cover;" alt="Skincare Details">
+                    <div class="p-4 text-center d-flex flex-column" style="flex: 1;">
+                        <span style="text-transform: uppercase; color: var(--primary-color); font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">Wellness</span>
+                        <h4 class="fw-bold mt-2 mb-3">Diet & Skin: What’s the Connection?</h4>
+                        <p class="text-muted small">Explore foods that naturally boost collagen production and those that might be secretly causing breakouts.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="blog-post.html" class="custom-btn custom-btn-outline" style="padding: 0.4rem 1rem; font-size: 0.875rem;">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Set of 3 Standard Grid Posts -->
+            <div class="animate-on-scroll">
+                <div class="bg-white rounded-4 shadow-sm h-100 border" style="overflow: hidden; display: flex; flex-direction: column;">
+                    <img src="images/about_image_1776176504159.png" style="width: 100%; height: 260px; object-fit: cover;" alt="Community">
+                    <div class="p-4 text-center d-flex flex-column" style="flex: 1;">
+                        <span style="text-transform: uppercase; color: var(--primary-color); font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">Ingredients</span>
+                        <h4 class="fw-bold mt-2 mb-3">The Truth About Parabens</h4>
+                        <p class="text-muted small">We demystify the science behind preservatives and why clean beauty is shifting away from them.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="blog-post.html" class="custom-btn custom-btn-outline" style="padding: 0.4rem 1rem; font-size: 0.875rem;">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animate-on-scroll" style="animation-delay: 0.1s;">
+                <div class="bg-white rounded-4 shadow-sm h-100 border" style="overflow: hidden; display: flex; flex-direction: column;">
+                    <img src="images/file_blog.png" style="width: 100%; height: 260px; object-fit: cover;" alt="Makeup Pattern">
+                    <div class="p-4 text-center d-flex flex-column" style="flex: 1;">
+                        <span style="text-transform: uppercase; color: var(--primary-color); font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">Trends</span>
+                        <h4 class="fw-bold mt-2 mb-3">Spring 2026 Beauty Trends</h4>
+                        <p class="text-muted small">From glossy eyelids to monochromatic pastel looks, here is what is taking over the runways this season.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="blog-post.html" class="custom-btn custom-btn-outline" style="padding: 0.4rem 1rem; font-size: 0.875rem;">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                <div class="bg-white rounded-4 shadow-sm h-100 border" style="overflow: hidden; display: flex; flex-direction: column;">
+                    <img src="images/tips_image_1776176521363.png" style="width: 100%; height: 260px; object-fit: cover;" alt="Skincare Details">
+                    <div class="p-4 text-center d-flex flex-column" style="flex: 1;">
+                        <span style="text-transform: uppercase; color: var(--primary-color); font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">Lifestyle</span>
+                        <h4 class="fw-bold mt-2 mb-3">Morning Affirmations</h4>
+                        <p class="text-muted small">How setting a mindful intention during your skincare routine can positively impact your entire day.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="blog-post.html" class="custom-btn custom-btn-outline" style="padding: 0.4rem 1rem; font-size: 0.875rem;">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="text-center mt-5 py-4">
+            <button class="custom-btn custom-btn-outline" style="border: 1px solid #ddd; color: #555;">Load More Articles <i class="fa-solid fa-rotate ms-2"></i></button>
+        </div>
+
+    </section>
+
+    <!-- Custom Footer -->
+    <footer class="site-footer">
+        <div class="site-footer-logo">
+            <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+        </div>
+        <p class="site-footer-desc">Beauty that Radiates Naturally. Consciously crafted skincare and cosmetics for the modern soul.</p>
+        <div class="site-footer-socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div class="site-footer-links">
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ & Returns</a>
+            <a href="blog.html">Journal</a>
+            <a href="contact.html">Contact Support</a>
+        </div>
+        <p class="small mb-0 mt-4 text-muted">&copy; 2026 AuraBloom Cosmetics. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

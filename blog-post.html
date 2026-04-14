@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Article - AuraBloom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Custom Navbar -->
+    <header class="site-header">
+        <div class="custom-container site-nav">
+            <a href="index.html" class="site-logo">
+                <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+            </a>
+            <ul class="site-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="tips.html">Tips</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="site-nav-actions">
+                <a href="products.html" class="custom-btn custom-btn-outline" style="position: relative;">
+                    <i class="fa-solid fa-shopping-cart"></i> Cart
+                    <span id="cart-counter" class="badge" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Wrapper -->
+    <article class="custom-container py-5 my-5">
+        <div class="mx-auto" style="max-width: 800px;">
+            <div class="animate-on-scroll">
+                
+                <!-- Breadcrumb -->
+                <div class="mb-4 text-muted small" style="display:flex; gap: 0.5rem; color: #6c757d;">
+                    <a href="blog.html" style="color: #6c757d;">Journal</a> 
+                    <span>/</span> 
+                    <span style="color: #333;">Article</span>
+                </div>
+
+                <!-- Article Header (No Image) -->
+                <header class="mb-5">
+                    <span style="background-color: var(--secondary-color); color: var(--primary-color); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight:bold; display: inline-block; margin-bottom: 1rem;">Skincare Science</span>
+                    <h1 class="display-4 fw-bold mb-4" style="line-height: 1.2;">The Complete Guide to Unlocking Your Natural Glow</h1>
+                    
+                    <div class="flex-row-center" style="justify-content: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid #ddd; margin-bottom: 2rem;">
+                        <div class="rounded-5 text-white flex-row-center me-3" style="width: 50px; height: 50px; background-color: var(--primary-color); margin-right: 1rem;">AY</div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Dr. Aryan Yadav</h6>
+                            <p class="text-muted small mb-0">Chief Dermatologist &bull; April 12, 2026</p>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Article Content -->
+                <div class="article-content text-muted" style="line-height: 1.9; font-size: 1.1rem; color: #555;">
+                    <p class="lead text-dark mb-5" style="color: #333; font-weight: 400;">
+                        Achieving that flawless, luminous "glass skin" doesn't require a complicated 12-step routine or harsh chemicals. It all comes down to understanding your skin's barrier and feeding it the right hydration at the right time.
+                    </p>
+
+                    <h3 class="fw-bold text-dark mt-5 mb-4" style="color: #222;">1. The Foundation of Hydration</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        When we talk about glowing skin, we are fundamentally talking about skin that is capable of reflecting light evenly. Dry, damaged, or congested skin scatters light, resulting in a dull appearance. The absolute most critical step is cellular hydration.
+                    </p>
+                    <p style="margin-bottom: 1.5rem;">
+                        Ingredients like <strong>Hyaluronic Acid</strong> and <strong>Glycerin</strong> act as humectants. They pull water from the environment deep into your epidermis. However, applying these without sealing them in can actually dehydrate your skin further through a process called transepidermal water loss (TEWL).
+                    </p>
+
+                    <blockquote class="bg-card rounded-4 p-5 my-5 shadow-sm" style="border-left: 5px solid var(--primary-color);">
+                        <p class="fst-italic mb-0 text-dark" style="font-size: 1.25rem; font-style: italic; color: #333;">"Your skin is a living ecosystem. Treat it with gentle consistency rather than aggressive correction, and watch how quickly it transforms."</p>
+                    </blockquote>
+
+                    <h3 class="fw-bold text-dark mt-5 mb-4" style="color: #222;">2. The Art of the Double Cleanse</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        You cannot hydrate skin that is blocked by a layer of pollution, SPF residue, and old makeup. Enter double cleansing:
+                    </p>
+                    <ul class="mb-5" style="padding-left: 1.5rem; list-style: disc;">
+                        <li class="mb-3"><strong>Step One:</strong> An oil-based cleanser or balm to break down sebum, SPF, and water-resistant makeup.</li>
+                        <li class="mb-3"><strong>Step Two:</strong> A gentle, foaming or milky water-based cleanser to sweep away the broken-down impurities without stripping your natural lipids.</li>
+                    </ul>
+
+                    <h3 class="fw-bold text-dark mt-5 mb-4" style="color: #222;">3. Consistency Over Complexity</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        Many people jump between different active ingredients—Vitamin C one day, strong retinoids the next, followed by exfoliating acids. This chaotic approach permanently damages the moisture barrier. 
+                    </p>
+                    <p style="margin-bottom: 1.5rem;">
+                        Instead, find a core routine (Cleanse, Treat, Moisturize, Protect) and stick to it for at least 28 days—the length of a full cellular turnover cycle. Allow your skin the time it needs to heal, regenerate, and finally, <em>glow</em>.
+                    </p>
+
+                    <!-- Article Footer / Share -->
+                    <div class="flex-space-between mt-5 pt-4" style="border-top: 1px solid #eee;">
+                        <span class="fw-bold" style="color: #333;">Share this article:</span>
+                        <div style="display:flex; gap: 1rem;">
+                            <a href="#" style="color: #6c757d; font-size: 1.2rem;"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" style="color: #6c757d; font-size: 1.2rem;"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" style="color: #6c757d; font-size: 1.2rem;"><i class="fa-solid fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <!-- Next Article Banner -->
+    <section class="custom-container mb-5 pb-5">
+        <div class="bg-card rounded-5 p-5 text-center shadow-sm animate-on-scroll mx-auto" style="max-width: 800px;">
+            <h4 class="fw-bold mb-3">Keep Reading</h4>
+            <p class="text-muted mb-4">Dive deeper into our beauty and wellness resources.</p>
+            <a href="blog.html" class="custom-btn custom-btn-primary">Back to Journal</a>
+        </div>
+    </section>
+
+    <!-- Custom Footer -->
+    <footer class="site-footer">
+        <div class="site-footer-logo">
+            <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+        </div>
+        <p class="site-footer-desc">Beauty that Radiates Naturally. Consciously crafted skincare and cosmetics for the modern soul.</p>
+        <div class="site-footer-socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div class="site-footer-links">
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ & Returns</a>
+            <a href="blog.html">Journal</a>
+            <a href="contact.html">Contact Support</a>
+        </div>
+        <p class="small mb-0 mt-4 text-muted">&copy; 2026 AuraBloom Cosmetics. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

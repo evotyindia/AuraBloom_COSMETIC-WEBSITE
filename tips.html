@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skincare Tips - AuraBloom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Custom Navbar -->
+    <header class="site-header">
+        <div class="custom-container site-nav">
+            <a href="index.html" class="site-logo">
+                <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+            </a>
+            <ul class="site-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="tips.html" class="active">Tips</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="site-nav-actions">
+                <a href="products.html" class="custom-btn custom-btn-outline" style="position: relative;">
+                    <i class="fa-solid fa-shopping-cart"></i> Cart
+                    <span id="cart-counter" class="badge" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header -->
+    <div class="bg-secondary py-5">
+        <div class="custom-container text-center py-4 animate-on-scroll">
+            <h1 class="display-5 fw-bold mb-3">Skincare Tips</h1>
+            <p class="lead mb-0 text-muted mx-auto" style="max-width: 600px;">Unlock the secrets to a flawless, glowing complexion.</p>
+        </div>
+    </div>
+
+    <!-- Morning Routine -->
+    <section class="custom-container py-5 mt-4">
+        <div class="grid-container grid-2 pb-5 mb-5" style="align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05);">
+            <div class="animate-on-scroll">
+                <img src="images/tips_image_1776176521363.png" alt="Morning Routine" class="rounded-4 shadow-sm w-100">
+            </div>
+            <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                <h3 class="fw-bold mb-3">The Ideal Morning Routine</h3>
+                <p class="text-muted mb-4">Start your day right with these easy but highly effective steps. Consistency is the key to healthy skin.</p>
+                
+                <div class="bg-white p-4 mb-3 rounded-4 shadow-sm border animate-on-scroll tip-card" style="animation-delay: 0.3s; display:flex; align-items:flex-start;">
+                    <div class="rounded-5 text-white flex-row-center me-3" style="width: 40px; height: 40px; background-color: var(--primary-color); flex-shrink: 0; margin-right: 1rem;">1</div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Cleanse Gently</h5>
+                        <p class="mb-0 text-muted small">Use a sulfate-free cleanser to remove overnight impurities without stripping your skin's natural moisture barrier.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 mb-3 rounded-4 shadow-sm border animate-on-scroll tip-card" style="animation-delay: 0.4s; display:flex; align-items:flex-start;">
+                    <div class="rounded-5 text-white flex-row-center me-3" style="width: 40px; height: 40px; background-color: var(--primary-color); flex-shrink: 0; margin-right: 1rem;">2</div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Hydrate & Treat</h5>
+                        <p class="mb-0 text-muted small">Apply a vitamin C serum followed by our lightweight Hydrating Cloud Cream to lock in moisture.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 mb-3 rounded-4 shadow-sm border animate-on-scroll tip-card" style="animation-delay: 0.5s; display:flex; align-items:flex-start;">
+                    <div class="rounded-5 text-white flex-row-center me-3" style="width: 40px; height: 40px; background-color: var(--primary-color); flex-shrink: 0; margin-right: 1rem;">3</div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Protect with SPF</h5>
+                        <p class="mb-0 text-muted small">Never skip sunscreen! Our Sheer Glow SPF 50 protects against UV rays while leaving no white cast.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nighttime Routine -->
+    <section class="custom-container py-2 mb-5 pb-5" style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+        <div class="grid-container grid-2 align-items-center">
+            <!-- Order reverse logic simulated for layout -->
+            <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                <h3 class="fw-bold mb-3">The Repair & Recover Night Routine</h3>
+                <p class="text-muted mb-4">Your skin repairs itself while you sleep. Feeding it the right nutrients at night gives you that morning glow.</p>
+                
+                <div class="bg-white p-4 mb-3 rounded-4 shadow-sm border animate-on-scroll tip-card" style="animation-delay: 0.3s; border-left: 4px solid #6c757d !important; display:flex; align-items:flex-start;">
+                    <div class="bg-secondary text-white rounded-5 flex-row-center me-3" style="width: 40px; height: 40px; flex-shrink: 0; margin-right: 1rem;"><i class="fa-solid fa-moon"></i></div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Double Cleanse</h5>
+                        <p class="mb-0 text-muted small">Melt away SPF, makeup, and pollution with an oil-based cleanser, followed by your water-based face wash.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 mb-3 rounded-4 shadow-sm border animate-on-scroll tip-card" style="animation-delay: 0.4s; border-left: 4px solid #6c757d !important; display:flex; align-items:flex-start;">
+                    <div class="bg-secondary text-white rounded-5 flex-row-center me-3" style="width: 40px; height: 40px; flex-shrink: 0; margin-right: 1rem;"><i class="fa-solid fa-moon"></i></div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Target & Nourish</h5>
+                        <p class="mb-0 text-muted small">Apply retinoids or rejuvenating serums. Finish off with a heavy night mask to seal the active ingredients in deep.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="animate-on-scroll text-right" style="text-align: right;">
+                <img src="images/image3.png" alt="Night Routine" class="rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit:cover;">
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Skin Type Guide -->
+    <section class="custom-container py-4 mb-5">
+        <h3 class="fw-bold text-center mb-5 animate-on-scroll">Know Your Skin Type</h3>
+        <div class="grid-container grid-3">
+            <div class="animate-on-scroll">
+                <div class="border p-4 bg-transparent rounded-4 h-100">
+                    <h5 class="fw-bold text-primary-soft mb-3" style="border-bottom:1px solid #ddd; padding-bottom:10px;">Dry Skin</h5>
+                    <p class="text-muted small mb-0">Feels tight naturally. Go for rich hydrating creams over lightweight lotions. Avoid harsh foaming cleansers.</p>
+                </div>
+            </div>
+            <div class="animate-on-scroll" style="animation-delay: 0.1s;">
+                <div class="border p-4 bg-transparent rounded-4 h-100">
+                    <h5 class="fw-bold text-primary-soft mb-3" style="border-bottom:1px solid #ddd; padding-bottom:10px;">Oily Skin</h5>
+                    <p class="text-muted small mb-0">Shiny by midday. Salicylic acid is your best friend. Always moisturize (yes, really!) using oil-free or gel textures.</p>
+                </div>
+            </div>
+            <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                <div class="border p-4 bg-transparent rounded-4 h-100">
+                    <h5 class="fw-bold text-primary-soft mb-3" style="border-bottom:1px solid #ddd; padding-bottom:10px;">Combination</h5>
+                    <p class="text-muted small mb-0">Oily T-zone, dry cheeks. Multi-masking is effective here. Use light hydrators all over and spot-treat oily zones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Footer -->
+    <footer class="site-footer">
+        <div class="site-footer-logo">
+            <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+        </div>
+        <p class="site-footer-desc">Beauty that Radiates Naturally. Consciously crafted skincare and cosmetics for the modern soul.</p>
+        <div class="site-footer-socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div class="site-footer-links">
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ & Returns</a>
+            <a href="blog.html">Journal</a>
+            <a href="contact.html">Contact Support</a>
+        </div>
+        <p class="small mb-0 mt-4 text-muted">&copy; 2026 AuraBloom Cosmetics. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

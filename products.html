@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - AuraBloom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Kept strictly for any deep JS dependencies if needed -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Custom Navbar -->
+    <header class="site-header">
+        <div class="custom-container site-nav">
+            <a href="index.html" class="site-logo">
+                <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+            </a>
+            <ul class="site-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" class="active">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="tips.html">Tips</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="site-nav-actions">
+                <a href="products.html" class="custom-btn custom-btn-outline" style="position: relative;">
+                    <i class="fa-solid fa-shopping-cart"></i> Cart
+                    <span id="cart-counter" class="badge" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-secondary py-5">
+        <div class="custom-container text-center py-4 animate-on-scroll">
+            <h1 class="display-5 fw-bold mb-3">All Products</h1>
+            <p class="lead mb-0 text-muted mx-auto" style="max-width: 600px;">Elevate your routine with our curated selection of high-performance, skin-loving essentials from head to toe.</p>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section class="custom-container py-5 mt-4">
+        
+        <!-- Filters & Search Toolbar -->
+        <div class="flex-space-between flex-wrap gap-4 mb-5 animate-on-scroll" style="align-items: center;">
+            <div style="flex: 1; min-width: 250px;">
+                <div style="display:flex; align-items:center; border: 1px solid #ddd; background: white; border-radius: 50px; padding: 0.75rem 1.25rem;">
+                    <i class="fa-solid fa-search text-muted" style="margin-right: 0.75rem;"></i>
+                    <input type="text" id="productSearch" placeholder="Search..." style="border: none; outline: none; flex: 1; background: transparent; padding: 0; margin: 0; font-family: inherit; font-size: 1rem;">
+                </div>
+            </div>
+            <div style="flex: 2; min-width: 300px; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem;">
+                <button class="custom-btn custom-btn-outline filter-btn active" data-filter="all">All</button>
+                <button class="custom-btn custom-btn-outline filter-btn" data-filter="makeup">Makeup</button>
+                <button class="custom-btn custom-btn-outline filter-btn" data-filter="skincare">Skincare</button>
+                <button class="custom-btn custom-btn-outline filter-btn" data-filter="haircare">Haircare</button>
+                <button class="custom-btn custom-btn-outline filter-btn" data-filter="fragrance">Fragrance</button>
+            </div>
+            <div style="flex: 1; min-width: 200px; text-align: right;">
+                <select id="sortSelect" style="padding: 0.6rem 1.25rem; border-radius: 50px; border: 1px solid #ddd; background: white; outline: none; font-family: inherit; font-size: 1rem;">
+                    <option value="default">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid-container grid-4" id="productsGrid">
+            
+            <div class="product-item" data-category="makeup" data-price="24.00" data-id="1">
+                <div class="product-card">
+                    <a href="product-detail.html" style="display:block; text-decoration:none;">
+                        <a href="product-detail.html" style="display:block;">
+                        <img src="images/lipstick_1776176421763.png" alt="Velvet Rose Lipstick">
+                    </a>
+                    </a>
+                    <div class="product-card-body">
+                        <span class="product-card-category">Makeup</span>
+                        <a href="product-detail.html" style="text-decoration:none; color:inherit;">
+                            <a href="product-detail.html" style="text-decoration:none; color:inherit;"><h3 class="product-card-title">Velvet Rose Lipstick</h3></a>
+                        </a>
+                        <div class="mt-1 mb-2" style="color: #f5b301; font-size: 0.85rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span class="text-muted ms-1" style="font-size: 0.75rem;">(128)</span></div>
+                        <span class="product-card-price">Rs. 24.00</span>
+                        <button class="custom-btn custom-btn-outline product-card-btn add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-item" data-category="makeup" data-price="38.00" data-id="2">
+                <div class="product-card">
+                    <a href="product-detail.html" style="display:block; text-decoration:none;">
+                        <a href="product-detail.html" style="display:block;">
+                        <img src="images/foundation_1776176450985.png" alt="Luminous Foundation">
+                    </a>
+                    </a>
+                    <div class="product-card-body">
+                        <span class="product-card-category">Makeup</span>
+                        <a href="product-detail.html" style="text-decoration:none; color:inherit;">
+                            <a href="product-detail.html" style="text-decoration:none; color:inherit;"><h3 class="product-card-title">Luminous Foundation</h3></a>
+                        </a>
+                        <div class="mt-1 mb-2" style="color: #f5b301; font-size: 0.85rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span class="text-muted ms-1" style="font-size: 0.75rem;">(128)</span></div>
+                        <span class="product-card-price">Rs. 38.00</span>
+                        <button class="custom-btn custom-btn-outline product-card-btn add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-item" data-category="skincare" data-price="45.00" data-id="3">
+                <div class="product-card" style="position: relative;">
+                    <span class="badge" style="position: absolute; top:1rem; right:1rem; background-color:#333; color:white; padding:0.5rem 1rem; border-radius:50px; font-size:0.8rem; z-index:2;">Bestseller</span>
+                    <a href="product-detail.html" style="display:block; text-decoration:none;">
+                        <a href="product-detail.html" style="display:block;">
+                        <img src="images/moisturizer_1776176468643.png" alt="Hydrating Cloud Cream">
+                    </a>
+                    </a>
+                    <div class="product-card-body">
+                        <span class="product-card-category">Skincare</span>
+                        <a href="product-detail.html" style="text-decoration:none; color:inherit;">
+                            <a href="product-detail.html" style="text-decoration:none; color:inherit;"><h3 class="product-card-title">Hydrating Cloud Cream</h3></a>
+                        </a>
+                        <div class="mt-1 mb-2" style="color: #f5b301; font-size: 0.85rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span class="text-muted ms-1" style="font-size: 0.75rem;">(128)</span></div>
+                        <span class="product-card-price">Rs. 45.00</span>
+                        <button class="custom-btn custom-btn-outline product-card-btn add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-item" data-category="skincare" data-price="32.00" data-id="4">
+                <div class="product-card">
+                    <a href="product-detail.html" style="display:block; text-decoration:none;">
+                        <a href="product-detail.html" style="display:block;">
+                        <img src="images/sunscreen_1776176485041.png" alt="Sheer Glow SPF 50">
+                    </a>
+                    </a>
+                    <div class="product-card-body">
+                        <span class="product-card-category">Skincare</span>
+                        <a href="product-detail.html" style="text-decoration:none; color:inherit;">
+                            <a href="product-detail.html" style="text-decoration:none; color:inherit;"><h3 class="product-card-title">Sheer Glow SPF 50</h3></a>
+                        </a>
+                        <div class="mt-1 mb-2" style="color: #f5b301; font-size: 0.85rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span class="text-muted ms-1" style="font-size: 0.75rem;">(128)</span></div>
+                        <span class="product-card-price">Rs. 32.00</span>
+                        <button class="custom-btn custom-btn-outline product-card-btn add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW PRODUCTS -->
+            <div class="product-item" data-category="haircare" data-price="28.00" data-id="5">
+                <div class="product-card" style="position: relative;">
+                    <span class="badge" style="position: absolute; top:1rem; right:1rem; background-color:var(--primary-color); color:white; padding:0.5rem 1rem; border-radius:50px; font-size:0.8rem; z-index:2;">New</span>
+                    <a href="product-detail.html" style="display:block; text-decoration:none;">
+                        <a href="product-detail.html" style="display:block;">
+                        <img src="images/hairoil_1776177386553.png" alt="Silk Drops Hair Oil">
+                    </a>
+                    </a>
+                    <div class="product-card-body">
+                        <span class="product-card-category">Haircare</span>
+                        <a href="product-detail.html" style="text-decoration:none; color:inherit;">
+                            <a href="product-detail.html" style="text-decoration:none; color:inherit;"><h3 class="product-card-title">Silk Drops Hair Oil</h3></a>
+                        </a>
+                        <div class="mt-1 mb-2" style="color: #f5b301; font-size: 0.85rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span class="text-muted ms-1" style="font-size: 0.75rem;">(128)</span></div>
+                        <span class="product-card-price">Rs. 28.00</span>
+                        <button class="custom-btn custom-btn-outline product-card-btn add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-item" data-category="haircare" data-price="22.00" data-id="6">
+                <div class="product-card">
+                    <a href="product-detail.html" style="display:block; text-decoration:none;">
+                        <a href="product-detail.html" style="display:block;">
+                        <img src="images/shampoo_1776177404185.png" alt="Volumize Shampoo">
+                    </a>
+                    </a>
+                    <div class="product-card-body">
+                        <span class="product-card-category">Haircare</span>
+                        <a href="product-detail.html" style="text-decoration:none; color:inherit;">
+                            <a href="product-detail.html" style="text-decoration:none; color:inherit;"><h3 class="product-card-title">Volume Lift Shampoo</h3></a>
+                        </a>
+                        <div class="mt-1 mb-2" style="color: #f5b301; font-size: 0.85rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span class="text-muted ms-1" style="font-size: 0.75rem;">(128)</span></div>
+                        <span class="product-card-price">Rs. 22.00</span>
+                        <button class="custom-btn custom-btn-outline product-card-btn add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-item" data-category="fragrance" data-price="55.00" data-id="7">
+                <div class="product-card">
+                    <a href="product-detail.html" style="display:block; text-decoration:none;">
+                        <a href="product-detail.html" style="display:block;">
+                        <img src="images/perfume_1776177339084.png" alt="AuraBloom Perfume">
+                    </a>
+                    </a>
+                    <div class="product-card-body">
+                        <span class="product-card-category">Fragrance</span>
+                        <a href="product-detail.html" style="text-decoration:none; color:inherit;">
+                            <a href="product-detail.html" style="text-decoration:none; color:inherit;"><h3 class="product-card-title">Blush Eau De Parfum</h3></a>
+                        </a>
+                        <div class="mt-1 mb-2" style="color: #f5b301; font-size: 0.85rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span class="text-muted ms-1" style="font-size: 0.75rem;">(128)</span></div>
+                        <span class="product-card-price">Rs. 55.00</span>
+                        <button class="custom-btn custom-btn-outline product-card-btn add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-item" data-category="fragrance" data-price="18.00" data-id="8">
+                <div class="product-card">
+                    <a href="product-detail.html" style="display:block; text-decoration:none;">
+                        <a href="product-detail.html" style="display:block;">
+                        <img src="images/bodymist_1776177357518.png" alt="Body Mist">
+                    </a>
+                    </a>
+                    <div class="product-card-body">
+                        <span class="product-card-category">Fragrance</span>
+                        <a href="product-detail.html" style="text-decoration:none; color:inherit;">
+                            <a href="product-detail.html" style="text-decoration:none; color:inherit;"><h3 class="product-card-title">Refreshing Body Mist</h3></a>
+                        </a>
+                        <div class="mt-1 mb-2" style="color: #f5b301; font-size: 0.85rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span class="text-muted ms-1" style="font-size: 0.75rem;">(128)</span></div>
+                        <span class="product-card-price">Rs. 18.00</span>
+                        <button class="custom-btn custom-btn-outline product-card-btn add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Custom Footer -->
+    <footer class="site-footer">
+        <div class="site-footer-logo">
+            <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+        </div>
+        <p class="site-footer-desc">Beauty that Radiates Naturally. Consciously crafted skincare and cosmetics for the modern soul.</p>
+        <div class="site-footer-socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+        <div class="site-footer-links">
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ & Returns</a>
+            <a href="blog.html">Journal</a>
+            <a href="contact.html">Contact Support</a>
+        </div>
+        <p class="small mb-0 mt-4 text-muted">&copy; 2026 AuraBloom Cosmetics. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
