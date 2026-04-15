@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Skin Analyzer | AuraBloom</title>
+    <meta name="description"
+        content="Discover your skin's unique profile with AuraBloom's advanced AI face analyzer. Get personalised product recommendations, skincare routines, and health guidance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ── Analyze Page Styles ── */
+
+        /* AI Badge */
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Page header */
+        .analyze-page-header {
+            background: linear-gradient(135deg, #eed6d3 0%, #fce8e8 50%, #f9ede8 100%);
+            border-bottom: 1px solid rgba(244, 184, 184, 0.3);
+            padding: 4rem 1rem 3rem;
+            text-align: center;
+        }
+        .analyze-page-header h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--text-main); }
+        .analyze-page-header p  { color: var(--text-muted); max-width: 600px; margin: 0.75rem auto 0; line-height: 1.7; }
+
+        /* Main analyzer card */
+        .analyzer-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(244, 184, 184, 0.15);
+            border: 1px solid rgba(244, 184, 184, 0.2);
+            padding: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @media (max-width: 576px) { .analyzer-card { padding: 1.25rem; } }
+
+        /* Step sections */
+        .step-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            margin-bottom: 0.6rem;
+        }
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+        .step-title i { color: var(--primary-color); margin-right: 0.4rem; }
+        .step-desc { font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+        /* Photo upload grid */
+        .photo-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        @media (max-width: 768px) { .photo-upload-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 400px) { .photo-upload-grid { grid-template-columns: 1fr 1fr; } }
+
+        .photo-upload-zone {
+            position: relative;
+            border: 2px dashed rgba(244, 184, 184, 0.6);
+            border-radius: 16px;
+            padding: 1.5rem 0.75rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fffcfb;
+            overflow: hidden;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+        .photo-upload-zone:hover {
+            border-color: var(--primary-color);
+            background: rgba(244, 184, 184, 0.06);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 184, 184, 0.2);
+        }
+        .photo-upload-zone.uploaded {
+            border-style: solid;
+            border-color: var(--primary-color);
+        }
+
+        /* Scanning ring animation on first zone */
+        .scan-ring {
+            position: absolute;
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            border: 2px solid rgba(244, 184, 184, 0.5);
+            animation: scanPulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes scanPulse {
+            0%   { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .upload-icon { font-size: 1.8rem; color: var(--primary-color); position: relative; z-index: 1; }
+        .upload-label { font-size: 0.82rem; font-weight: 600; color: var(--text-main); }
+        .upload-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: rgba(244, 184, 184, 0.15);
+            padding: 0.1rem 0.5rem;
+            border-radius: 50px;
+        }
+        .upload-input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Info grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        @media (max-width: 768px) { .info-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .info-grid { grid-template-columns: 1fr; } }
+
+        .info-field label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+        .info-select {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1.5px solid rgba(244, 184, 184, 0.4);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            background: #fffcfb;
+            outline: none;
+            transition: border-color 0.3s;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23f4b8b8' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px;
+        }
+        .info-select:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(244,184,184,0.15); }
+
+        /* Analyze button */
+        .analyze-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 24px rgba(244, 184, 184, 0.45);
+            letter-spacing: 0.3px;
+        }
+        .analyze-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(244, 184, 184, 0.55);
+        }
+        .analyze-btn:disabled { opacity: 0.75; cursor: not-allowed; transform: none; }
+
+        /* ── Results Section ── */
+        .results-header h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--text-main); }
+
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        @media (max-width: 768px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .metrics-grid { grid-template-columns: 1fr; } }
+
+        .metric-card {
+            background: #fff;
+            border: 1px solid rgba(244,184,184,0.2);
+            border-radius: 16px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(244,184,184,0.1);
+            transition: transform 0.3s ease;
+        }
+        .metric-card:hover { transform: translateY(-4px); }
+        .metric-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .metric-value { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+        .metric-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+        .metric-bar {
+            height: 6px;
+            background: rgba(244,184,184,0.15);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        .metric-fill {
+            height: 100%;
+            border-radius: 50px;
+            animation: fillBar 1.2s ease forwards;
+        }
+        @keyframes fillBar { from { width: 0 !important; } }
+
+        /* Section cards */
+        .section-card {
+            background: #fff;
+            border: 1px solid rgba(244,184,184,0.2);
+            border-radius: 18px;
+            padding: 1.75rem 2rem;
+            box-shadow: 0 4px 20px rgba(244,184,184,0.08);
+        }
+        @media (max-width: 576px) { .section-card { padding: 1.25rem; } }
+        .section-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(244,184,184,0.25);
+        }
+        .section-card-title i { color: var(--primary-color); margin-right: 0.5rem; }
+
+        /* Concerns */
+        .concerns-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .concern-tag {
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .concern-mild   { background: rgba(244,184,184,0.2); color: #c05070; border: 1px solid rgba(244,184,184,0.4); }
+        .concern-low    { background: rgba(248,215,107,0.2); color: #a07020; border: 1px solid rgba(248,215,107,0.4); }
+        .concern-clear  { background: rgba(100,200,140,0.15); color: #2a7a50; border: 1px solid rgba(100,200,140,0.3); }
+
+        /* Recommended Products */
+        .rec-products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        @media (max-width: 768px) { .rec-products-grid { grid-template-columns: 1fr; } }
+
+        .rec-product-card {
+            border: 1px solid rgba(244,184,184,0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .rec-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px rgba(244,184,184,0.2);
+        }
+        .rec-product-img-wrap {
+            position: relative;
+            height: 160px;
+            background: linear-gradient(135deg, #fce8e8, #eed6d3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rec-product-img-wrap img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .rec-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .rec-badge-top       { background: var(--primary-color); color: #fff; }
+        .rec-badge-essential { background: #3a302f; color: #fff; }
+
+        .rec-product-body { padding: 1rem; }
+        .rec-product-cat  { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .rec-product-name { font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin: 0.25rem 0 0.5rem; }
+        .rec-product-why  { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0.5rem; }
+        .rec-product-why i { color: #78c898; margin-right: 0.3rem; }
+        .rec-product-price { font-size: 1rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.25rem; }
+
+        /* Routine */
+        .routine-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 640px) { .routine-grid { grid-template-columns: 1fr; } }
+
+        .routine-block { background: #fffcfb; border-radius: 12px; padding: 1.25rem; border: 1px solid rgba(244,184,184,0.15); }
+        .routine-time  { font-weight: 700; font-size: 0.9rem; color: var(--primary-color); margin-bottom: 0.75rem; }
+        .routine-time i { margin-right: 0.4rem; }
+        .routine-steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+        .routine-steps li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.84rem; color: var(--text-main); line-height: 1.4; }
+        .step-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 20px; height: 20px;
+            background: var(--primary-color); color: #fff;
+            border-radius: 50%; font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+        }
+
+        /* Health guidance */
+        .guidance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        @media (max-width: 768px) { .guidance-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .guidance-grid { grid-template-columns: 1fr; } }
+
+        .guidance-card {
+            background: #fffcfb;
+            border: 1px solid rgba(244,184,184,0.15);
+            border-radius: 14px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .guidance-card:hover { transform: translateY(-3px); }
+        .guidance-icon { font-size: 1.6rem; color: var(--primary-color); margin-bottom: 0.6rem; display: block; }
+        .guidance-card h5 { font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem; }
+        .guidance-card p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; margin: 0; }
+
+        /* Tips */
+        .tips-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            background: #fffcfb;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(244,184,184,0.15);
+            line-height: 1.5;
+        }
+        .tip-item i { color: var(--primary-color); margin-top: 0.15rem; flex-shrink: 0; }
+
+        /* Divider */
+        .analyze-divider {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
+            border-radius: 50px;
+            margin: 0.5rem auto 0;
+        }
+
+        /* Loading overlay */
+        #loading-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(255,252,251,0.92);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+        }
+        #loading-overlay.active { display: flex; }
+        .loading-ring {
+            width: 80px; height: 80px;
+            border: 4px solid rgba(244,184,184,0.25);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { font-size: 1rem; font-weight: 600; color: var(--text-main); }
+        .loading-sub  { font-size: 0.82rem; color: var(--text-muted); }
+
+        /* w-100 utility for buttons */
+        .w-100 { width: 100%; display: block; text-align: center; }
+        .ms-2  { margin-left: 0.5rem; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="loading-ring"></div>
+        <div class="loading-text">Analyzing your skin…</div>
+        <div class="loading-sub">Processing multi-angle facial data &amp; AI detection</div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="ab-nav" id="siteNav">
+        <div class="ab-nav-inner">
+            <a href="index.html" class="ab-brand"><i class="fa-solid fa-leaf"></i> AuraBloom</a>
+            <button class="ab-hamburger" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="ab-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="tips.html">Tips</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="analyze.html" class="active">Analyze</a></li>
+            </ul>
+            <div class="ab-actions">
+                <a href="products.html" class="ab-cart-btn" title="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="ab-cart-badge" id="cart-counter">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="analyze-page-header">
+        <span class="ai-badge"><i class="fa-solid fa-brain"></i> Powered by AI</span>
+        <h1 class="mt-3 mb-2 fw-bold">AI Skin Analyzer</h1>
+        <div class="analyze-divider"></div>
+        <p class="mt-3">Upload photos from multiple angles and let our AI reveal your complete skin profile with personalised product recommendations and health guidance.</p>
+    </section>
+
+    <!-- ── Analysis Input Form ── -->
+    <section class="custom-container py-5">
+        <div class="analyzer-card">
+
+            <!-- Step 1: Photos -->
+            <div class="analyzer-step">
+                <div class="step-badge">Step 1 of 2</div>
+                <h2 class="step-title"><i class="fa-solid fa-camera-retro"></i> Capture Your Skin</h2>
+                <p class="step-desc text-muted">Upload clear, evenly-lit photos from all angles for the most accurate AI analysis. Avoid heavy filters or makeup if possible.</p>
+
+                <div class="photo-upload-grid">
+                    <!-- Front -->
+                    <div class="photo-upload-zone" id="zone-front">
+                        <div class="scan-ring"></div>
+                        <i class="fa-solid fa-face-smile upload-icon"></i>
+                        <span class="upload-label">Front Face</span>
+                        <span class="upload-sub">Required</span>
+                        <input type="file" accept="image/*" class="upload-input" id="photo-front">
+                    </div>
+                    <!-- Left -->
+                    <div class="photo-upload-zone" id="zone-left">
+                        <i class="fa-solid fa-face-smile-wink upload-icon" style="transform: scaleX(-1);"></i>
+                        <span class="upload-label">Left Profile</span>
+                        <span class="upload-sub">Recommended</span>
+                        <input type="file" accept="image/*" class="upload-input" id="photo-left">
+                    </div>
+                    <!-- Right -->
+                    <div class="photo-upload-zone" id="zone-right">
+                        <i class="fa-solid fa-face-smile-wink upload-icon"></i>
+                        <span class="upload-label">Right Profile</span>
+                        <span class="upload-sub">Recommended</span>
+                        <input type="file" accept="image/*" class="upload-input" id="photo-right">
+                    </div>
+                    <!-- Close-up -->
+                    <div class="photo-upload-zone" id="zone-closeup">
+                        <i class="fa-solid fa-magnifying-glass upload-icon"></i>
+                        <span class="upload-label">Skin Close-up</span>
+                        <span class="upload-sub">Optional</span>
+                        <input type="file" accept="image/*" class="upload-input" id="photo-closeup">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <hr style="border-color: rgba(244,184,184,0.2); margin: 2.5rem 0;">
+
+            <!-- Step 2: Personal Details -->
+            <div class="analyzer-step">
+                <div class="step-badge">Step 2 of 2</div>
+                <h2 class="step-title"><i class="fa-solid fa-user-pen"></i> Personal Details</h2>
+                <p class="step-desc text-muted">Help us calibrate the analysis with a few quick details about you.</p>
+
+                <div class="info-grid">
+                    <div class="info-field">
+                        <label>Age Range</label>
+                        <select class="info-select">
+                            <option value="">Select age range</option>
+                            <option>Under 18</option>
+                            <option>18 – 24</option>
+                            <option>25 – 34</option>
+                            <option>35 – 44</option>
+                            <option>45 – 54</option>
+                            <option>55+</option>
+                        </select>
+                    </div>
+                    <div class="info-field">
+                        <label>Gender</label>
+                        <select class="info-select">
+                            <option value="">Select gender</option>
+                            <option>Female</option>
+                            <option>Male</option>
+                            <option>Non-binary</option>
+                            <option>Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="info-field">
+                        <label>Primary Skin Concern</label>
+                        <select class="info-select">
+                            <option value="">Select concern</option>
+                            <option>Acne &amp; Breakouts</option>
+                            <option>Dryness &amp; Dehydration</option>
+                            <option>Oiliness</option>
+                            <option>Uneven Skin Tone</option>
+                            <option>Anti-Aging</option>
+                            <option>Sensitivity &amp; Redness</option>
+                            <option>Dark Circles</option>
+                            <option>Pore Size</option>
+                        </select>
+                    </div>
+                    <div class="info-field">
+                        <label>Daily Sun Exposure</label>
+                        <select class="info-select">
+                            <option value="">Select level</option>
+                            <option>Minimal (mostly indoors)</option>
+                            <option>Moderate (1 – 3 hrs)</option>
+                            <option>High (3+ hrs)</option>
+                        </select>
+                    </div>
+                    <div class="info-field">
+                        <label>Current Skincare Routine</label>
+                        <select class="info-select">
+                            <option value="">Select level</option>
+                            <option>None / Minimal</option>
+                            <option>Basic (Cleanser + Moisturiser)</option>
+                            <option>Intermediate (+ Serum / SPF)</option>
+                            <option>Advanced (Full routine)</option>
+                        </select>
+                    </div>
+                    <div class="info-field">
+                        <label>Daily Water Intake</label>
+                        <select class="info-select">
+                            <option value="">Select intake</option>
+                            <option>Less than 4 glasses</option>
+                            <option>4 – 6 glasses</option>
+                            <option>7 – 8 glasses</option>
+                            <option>8+ glasses</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="text-center mt-5">
+                <button class="analyze-btn" id="analyzeBtn" onclick="runAnalysis()">
+                    <i class="fa-solid fa-brain"></i>&nbsp; Analyze My Skin
+                </button>
+                <p class="text-muted mt-3" style="font-size: 0.8rem;">
+                    <i class="fa-solid fa-lock"></i>&nbsp; Your photos are processed securely and never stored on our servers.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── Results Section (hidden until submit) ── -->
+    <section id="results-section" style="display: none;">
+        <div class="custom-container pb-5">
+
+            <!-- Header -->
+            <div class="results-header text-center mb-5">
+                <span class="ai-badge"><i class="fa-solid fa-circle-check"></i> Analysis Complete</span>
+                <h2 class="mt-3 fw-bold">Your Skin Profile</h2>
+                <div class="analyze-divider"></div>
+                <p class="text-muted mt-3">Based on your uploaded photos and personal details, here is your personalised skin report generated by AuraBloom AI.</p>
+            </div>
+
+            <!-- Metrics -->
+            <div class="metrics-grid mb-4">
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <div class="metric-value">Combination</div>
+                    <div class="metric-label">Skin Type</div>
+                    <div class="metric-bar"><div class="metric-fill" style="width:65%; background: linear-gradient(90deg,#f4b8b8,#e09898);"></div></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-calendar"></i></div>
+                    <div class="metric-value">22 – 26 yrs</div>
+                    <div class="metric-label">Estimated Skin Age</div>
+                    <div class="metric-bar"><div class="metric-fill" style="width:42%; background: linear-gradient(90deg,#b8d4f4,#98b8e0);"></div></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-palette"></i></div>
+                    <div class="metric-value">Warm Beige</div>
+                    <div class="metric-label">Skin Tone · Fitzpatrick III</div>
+                    <div class="metric-bar"><div class="metric-fill" style="width:55%; background: linear-gradient(90deg,#e8c89a,#c8985a);"></div></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-sun"></i></div>
+                    <div class="metric-value">Moderate</div>
+                    <div class="metric-label">UV Sensitivity</div>
+                    <div class="metric-bar"><div class="metric-fill" style="width:50%; background: linear-gradient(90deg,#f4d4b8,#e0a878);"></div></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <div class="metric-value">72 / 100</div>
+                    <div class="metric-label">Overall Skin Health Score</div>
+                    <div class="metric-bar"><div class="metric-fill" style="width:72%; background: linear-gradient(90deg,#b8f4c8,#78c898);"></div></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-water"></i></div>
+                    <div class="metric-value">Mild</div>
+                    <div class="metric-label">Dehydration Level</div>
+                    <div class="metric-bar"><div class="metric-fill" style="width:28%; background: linear-gradient(90deg,#f4b8b8,#e09898);"></div></div>
+                </div>
+            </div>
+
+            <!-- Detected Concerns -->
+            <div class="section-card mb-4">
+                <h3 class="section-card-title"><i class="fa-solid fa-magnifying-glass-chart"></i> Detected Concerns</h3>
+                <div class="concerns-list">
+                    <span class="concern-tag concern-mild">Mild Dehydration</span>
+                    <span class="concern-tag concern-mild">Slight Uneven Texture</span>
+                    <span class="concern-tag concern-low">Minor T-Zone Oiliness</span>
+                    <span class="concern-tag concern-low">Faint Under-Eye Circles</span>
+                    <span class="concern-tag concern-clear">No Active Acne Detected</span>
+                    <span class="concern-tag concern-clear">No Severe Sensitivity</span>
+                </div>
+            </div>
+
+            <!-- Product Recommendations -->
+            <div class="section-card mb-4">
+                <h3 class="section-card-title"><i class="fa-solid fa-bag-shopping"></i> Recommended Products</h3>
+                <p class="text-muted mb-4" style="font-size: 0.88rem;">Personalised picks from our collection based on your unique skin profile.</p>
+                <div class="rec-products-grid">
+                    <div class="rec-product-card">
+                        <div class="rec-product-img-wrap">
+                            <img src="images/moisturizer_1776176468643.png" alt="Hydrating Cloud Cream">
+                            <span class="rec-badge rec-badge-top">Top Pick</span>
+                        </div>
+                        <div class="rec-product-body">
+                            <span class="rec-product-cat">Skincare</span>
+                            <h4 class="rec-product-name">Hydrating Cloud Cream</h4>
+                            <p class="rec-product-why"><i class="fa-solid fa-circle-check"></i> Ideal for combination skin — intense hydration without heaviness</p>
+                            <div class="rec-product-price">Rs. 45,000</div>
+                            <a href="product-detail.html" class="custom-btn custom-btn-primary w-100 mt-2">View Product</a>
+                        </div>
+                    </div>
+                    <div class="rec-product-card">
+                        <div class="rec-product-img-wrap">
+                            <img src="images/sunscreen_1776176485041.png" alt="Sheer Glow SPF 50">
+                            <span class="rec-badge rec-badge-essential">Essential</span>
+                        </div>
+                        <div class="rec-product-body">
+                            <span class="rec-product-cat">Skincare</span>
+                            <h4 class="rec-product-name">Sheer Glow SPF 50</h4>
+                            <p class="rec-product-why"><i class="fa-solid fa-circle-check"></i> Moderate UV sensitivity detected — daily SPF is non-negotiable</p>
+                            <div class="rec-product-price">Rs. 32,000</div>
+                            <a href="product-detail.html" class="custom-btn custom-btn-primary w-100 mt-2">View Product</a>
+                        </div>
+                    </div>
+                    <div class="rec-product-card">
+                        <div class="rec-product-img-wrap">
+                            <img src="images/foundation_1776176450985.png" alt="Luminous Foundation">
+                        </div>
+                        <div class="rec-product-body">
+                            <span class="rec-product-cat">Makeup</span>
+                            <h4 class="rec-product-name">Luminous Foundation</h4>
+                            <p class="rec-product-why"><i class="fa-solid fa-circle-check"></i> Warm Beige tone match — buildable coverage for uneven texture</p>
+                            <div class="rec-product-price">Rs. 38,000</div>
+                            <a href="product-detail.html" class="custom-btn custom-btn-primary w-100 mt-2">View Product</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personalised Routine -->
+            <div class="section-card mb-4">
+                <h3 class="section-card-title"><i class="fa-solid fa-clipboard-list"></i> Your Personalised Skincare Routine</h3>
+                <div class="routine-grid">
+                    <div class="routine-block">
+                        <div class="routine-time"><i class="fa-solid fa-sun"></i> Morning Routine</div>
+                        <ol class="routine-steps">
+                            <li><span class="step-num">1</span> Gentle foam cleanser with lukewarm water</li>
+                            <li><span class="step-num">2</span> Hydrating toner — pat gently, don't rub</li>
+                            <li><span class="step-num">3</span> Vitamin C serum for brightening</li>
+                            <li><span class="step-num">4</span> Hydrating Cloud Cream (moisturise)</li>
+                            <li><span class="step-num">5</span> Sheer Glow SPF 50 (always the final step)</li>
+                        </ol>
+                    </div>
+                    <div class="routine-block">
+                        <div class="routine-time"><i class="fa-solid fa-moon"></i> Evening Routine</div>
+                        <ol class="routine-steps">
+                            <li><span class="step-num">1</span> Micellar water + oil cleanser (double cleanse)</li>
+                            <li><span class="step-num">2</span> Gentle exfoliant — 2× per week only</li>
+                            <li><span class="step-num">3</span> Niacinamide serum for pore-minimising</li>
+                            <li><span class="step-num">4</span> Hydrating Cloud Cream (night application)</li>
+                            <li><span class="step-num">5</span> Eye cream to target under-eye circles</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health & Lifestyle Guidance -->
+            <div class="section-card mb-4">
+                <h3 class="section-card-title"><i class="fa-solid fa-heart-pulse"></i> Health &amp; Lifestyle Guidance</h3>
+                <div class="guidance-grid">
+                    <div class="guidance-card">
+                        <i class="fa-solid fa-glass-water guidance-icon"></i>
+                        <h5>Hydration</h5>
+                        <p>Drink at least 8 glasses of water daily. Your mild dehydration score suggests your skin needs internal hydration support.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <i class="fa-solid fa-bed guidance-icon"></i>
+                        <h5>Sleep Quality</h5>
+                        <p>Aim for 7–8 hours of deep sleep nightly. Skin repair and collagen synthesis occur primarily during sleep cycles.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <i class="fa-solid fa-apple-whole guidance-icon"></i>
+                        <h5>Nutrition</h5>
+                        <p>Include antioxidant-rich foods like berries, spinach, and walnuts. Omega-3 fatty acids strengthen the skin barrier.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <i class="fa-solid fa-person-walking guidance-icon"></i>
+                        <h5>Exercise</h5>
+                        <p>30 minutes of moderate exercise daily improves blood circulation, delivering nutrients to skin cells for a natural glow.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <i class="fa-solid fa-face-smile-beam guidance-icon"></i>
+                        <h5>Stress Management</h5>
+                        <p>Elevated cortisol triggers T-zone oiliness. Practice mindfulness, yoga, or breathing exercises regularly to manage stress.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <i class="fa-solid fa-umbrella-beach guidance-icon"></i>
+                        <h5>Sun Protection</h5>
+                        <p>Always wear SPF 50 outdoors. Reapply every 2 hours in direct sunlight. UV damage is the leading cause of premature ageing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="section-card mb-5">
+                <h3 class="section-card-title"><i class="fa-solid fa-lightbulb"></i> Quick Skin Tips</h3>
+                <div class="tips-list">
+                    <div class="tip-item"><i class="fa-solid fa-circle-check"></i> Never skip sunscreen — UV rays penetrate clouds even on overcast days.</div>
+                    <div class="tip-item"><i class="fa-solid fa-circle-check"></i> Wash your pillowcase every 3–4 days to prevent bacteria transfer to skin.</div>
+                    <div class="tip-item"><i class="fa-solid fa-circle-check"></i> Pat (don't rub) your face dry with a clean, soft towel after washing.</div>
+                    <div class="tip-item"><i class="fa-solid fa-circle-check"></i> Avoid hot showers — lukewarm water preserves your skin's natural oils.</div>
+                    <div class="tip-item"><i class="fa-solid fa-circle-check"></i> Apply moisturiser within 60 seconds of washing to lock in moisture effectively.</div>
+                    <div class="tip-item"><i class="fa-solid fa-circle-check"></i> Clean your phone screen daily — it transfers oil and bacteria to your cheeks.</div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center pb-2">
+                <button class="custom-btn custom-btn-outline"
+                    onclick="document.getElementById('results-section').style.display='none'; window.scrollTo({top:0,behavior:'smooth'});">
+                    <i class="fa-solid fa-rotate-right"></i> Re-Analyze
+                </button>
+                <a href="products.html" class="custom-btn custom-btn-primary ms-2">
+                    <i class="fa-solid fa-bag-shopping"></i> Shop All Products
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="site-footer-logo">
+            <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
+        </div>
+        <p class="site-footer-desc">Beauty that Radiates Naturally. Consciously crafted skincare and cosmetics for the modern soul.</p>
+        <div class="site-footer-socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div class="site-footer-links">
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ &amp; Returns</a>
+            <a href="blog.html">Journal</a>
+            <a href="contact.html">Contact Support</a>
+        </div>
+        <p class="small mb-0 mt-4 text-muted">&copy; 2026 AuraBloom Cosmetics. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        /* ── Photo Preview ── */
+        document.querySelectorAll('.upload-input').forEach(input => {
+            input.addEventListener('change', function () {
+                const zone = this.closest('.photo-upload-zone');
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        zone.style.backgroundImage = `url(${e.target.result})`;
+                        zone.style.backgroundSize = 'cover';
+                        zone.style.backgroundPosition = 'center';
+                        zone.style.borderStyle = 'solid';
+                        zone.style.borderColor = 'var(--primary-color)';
+                        zone.querySelectorAll('.upload-icon, .upload-label, .upload-sub, .scan-ring').forEach(el => el.style.display = 'none');
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+
+        /* ── Analyze Submit (UI only — sample data) ── */
+        function runAnalysis() {
+            const overlay = document.getElementById('loading-overlay');
+            overlay.classList.add('active');
+            setTimeout(() => {
+                overlay.classList.remove('active');
+                const results = document.getElementById('results-section');
+                results.style.display = 'block';
+                results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 2800);
+        }
+    </script>
+
+</body>
+</html>

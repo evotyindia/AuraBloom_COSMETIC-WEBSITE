@@ -1,80 +1,165 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Dynamic Shopping Cart Logic
+    // ── Navbar: hamburger toggle & scroll shadow ──
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    const siteNav = document.getElementById('siteNav');
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+        // Close menu when a link is clicked (mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+    }
+    if (siteNav) {
+        window.addEventListener('scroll', () => {
+            siteNav.classList.toggle('scrolled', window.scrollY > 10);
+        }, { passive: true });
+    }
+
+    // 1. Dynamic Shopping Cart Logic  ── with localStorage persistence ──────────
     const cartCounterText = document.getElementById('cart-counter');
-    let globalCartCount = 0;
+    const CART_KEY = 'aurabloom_cart_v2'; // { productId: qty }
+
+    // ── Storage helpers ────────────────────────────────────────────────────────
+    function loadCart() {
+        try {
+            return JSON.parse(localStorage.getItem(CART_KEY)) || {};
+        } catch(e) { return {}; }
+    }
+    function saveCart(cart) {
+        try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e) {}
+    }
+
+    // ── Badge ──────────────────────────────────────────────────────────────────
+    /** Sum every visible qty-count span — single source of truth. */
+    function recalcCartCount() {
+        let total = 0;
+        document.querySelectorAll('.cart-quantity-toggle .qty-count').forEach(span => {
+            total += parseInt(span.textContent, 10) || 0;
+        });
+        return total;
+    }
+    /** Also add cart items that belong to pages NOT currently displayed (not rendered). */
+    function totalFromStorage() {
+        return Object.values(loadCart()).reduce((s, q) => s + q, 0);
+    }
 
     function updateGlobalCartBadge() {
-        if(cartCounterText) {
-            cartCounterText.textContent = globalCartCount;
-            cartCounterText.style.transform = 'scale(1.5)';
-            setTimeout(() => {
-                cartCounterText.style.transform = 'scale(1)';
-            }, 200);
+        // Sum page-visible spinners + items stored from OTHER pages
+        const currentCart   = loadCart();
+        const visibleIds    = new Set();
+        document.querySelectorAll('.product-item[data-id]').forEach(el => {
+            visibleIds.add(el.getAttribute('data-id'));
+        });
+        let total = recalcCartCount(); // what's rendered on THIS page
+        Object.entries(currentCart).forEach(([id, qty]) => {
+            if (!visibleIds.has(id)) total += qty; // add items from other pages
+        });
+        if (cartCounterText) {
+            cartCounterText.textContent = total;
+            cartCounterText.style.transform = 'scale(1.4)';
+            setTimeout(() => { cartCounterText.style.transform = 'scale(1)'; }, 200);
         }
     }
 
-    // Attach logic dynamically to all "Add to Cart" buttons
-    // We use a delegated listener on the body to support elements that might load later
+    // ── Spinner builder (shared by click handler & restore) ────────────────────
+    function buildSpinner(qty = 1) {
+        const toggleUI = document.createElement('div');
+        toggleUI.className = 'cart-quantity-toggle';
+        toggleUI.style.cssText = [
+            'display:flex', 'align-items:center', 'justify-content:space-between',
+            'border:1px solid var(--primary-color)', 'border-radius:50px',
+            'overflow:hidden', 'min-width:120px'
+        ].join(';');
+        toggleUI.innerHTML = `
+            <button class="qty-btn minus" style="border:none;background:none;padding:0.5rem 1rem;color:var(--primary-color);cursor:pointer;">−</button>
+            <span class="qty-count" style="font-weight:bold;padding:0.5rem 0;">${qty}</span>
+            <button class="qty-btn plus" style="border:none;background:none;padding:0.5rem 1rem;color:var(--primary-color);cursor:pointer;">+</button>
+        `;
+        return toggleUI;
+    }
+
+    // ── Save the current page's spinner state back to localStorage ─────────────
+    function persistPageCart() {
+        const cart = loadCart();
+        document.querySelectorAll('.product-item[data-id]').forEach(item => {
+            const id       = item.getAttribute('data-id');
+            const countSpan = item.querySelector('.cart-quantity-toggle .qty-count');
+            if (countSpan) {
+                cart[id] = parseInt(countSpan.textContent, 10) || 0;
+            } else {
+                delete cart[id]; // removed from cart on this page
+            }
+        });
+        saveCart(cart);
+    }
+
+    // ── Restore saved state on page load ──────────────────────────────────────
+    (function restoreCart() {
+        const cart = loadCart();
+        document.querySelectorAll('.product-item[data-id]').forEach(item => {
+            const id  = item.getAttribute('data-id');
+            const qty = cart[id];
+            if (!qty || qty <= 0) return;
+
+            const btn = item.querySelector('.add-to-cart-btn');
+            if (!btn) return;
+
+            const spinner = buildSpinner(qty);
+            btn.parentElement.insertBefore(spinner, btn);
+            btn.style.display = 'none';
+        });
+        updateGlobalCartBadge();
+    })();
+
+    // ── Delegated click handler ────────────────────────────────────────────────
     document.body.addEventListener('click', (e) => {
+
+        // "Add to Cart" button
         if (e.target.classList.contains('add-to-cart-btn')) {
             e.preventDefault();
-            const btn = e.target;
+            const btn    = e.target;
             const parent = btn.parentElement;
-            
-            // First time adding
-            globalCartCount++;
-            updateGlobalCartBadge();
-
-            // Transform button into +/- toggle
-            const toggleUI = document.createElement('div');
-            toggleUI.className = 'cart-quantity-toggle';
-            toggleUI.style.display = 'flex';
-            toggleUI.style.alignItems = 'center';
-            toggleUI.style.justifyContent = 'space-between';
-            toggleUI.style.border = '1px solid var(--primary-color)';
-            toggleUI.style.borderRadius = '50px';
-            toggleUI.style.overflow = 'hidden';
-            toggleUI.style.minWidth = '120px';
-            toggleUI.innerHTML = `
-                <button class="qty-btn minus" style="border:none; background:none; padding: 0.5rem 1rem; color: var(--primary-color); cursor:pointer;">-</button>
-                <span class="qty-count" style="font-weight: bold; padding: 0.5rem 0;">1</span>
-                <button class="qty-btn plus" style="border:none; background:none; padding: 0.5rem 1rem; color: var(--primary-color); cursor:pointer;">+</button>
-            `;
-            
-            // Swap node
-            parent.insertBefore(toggleUI, btn);
+            const spinner = buildSpinner(1);
+            parent.insertBefore(spinner, btn);
             btn.style.display = 'none';
+            persistPageCart();
+            updateGlobalCartBadge();
+        }
 
-            let localCount = 1;
+        // "+" button
+        if (e.target.classList.contains('plus')) {
+            e.preventDefault();
+            const countSpan = e.target.closest('.cart-quantity-toggle').querySelector('.qty-count');
+            countSpan.textContent = parseInt(countSpan.textContent, 10) + 1;
+            persistPageCart();
+            updateGlobalCartBadge();
+        }
 
-            // Handle plus/minus
-            const minusBtn = toggleUI.querySelector('.minus');
-            const plusBtn = toggleUI.querySelector('.plus');
+        // "−" button
+        if (e.target.classList.contains('minus')) {
+            e.preventDefault();
+            const toggleUI  = e.target.closest('.cart-quantity-toggle');
             const countSpan = toggleUI.querySelector('.qty-count');
+            const newVal    = parseInt(countSpan.textContent, 10) - 1;
 
-            plusBtn.addEventListener('click', (ev) => {
-                ev.preventDefault();
-                localCount++;
-                globalCartCount++;
-                countSpan.textContent = localCount;
-                updateGlobalCartBadge();
-            });
-
-            minusBtn.addEventListener('click', (ev) => {
-                ev.preventDefault();
-                localCount--;
-                globalCartCount--;
-                updateGlobalCartBadge();
-
-                if (localCount === 0) {
-                    toggleUI.remove();
-                    btn.style.display = '';
-                    btn.textContent = 'Add to Cart';
-                } else {
-                    countSpan.textContent = localCount;
+            if (newVal <= 0) {
+                const parent     = toggleUI.parentElement;
+                const originalBtn = parent.querySelector('.add-to-cart-btn');
+                toggleUI.remove();
+                if (originalBtn) {
+                    originalBtn.style.display = '';
+                    originalBtn.textContent = 'Add to Cart';
                 }
-            });
+            } else {
+                countSpan.textContent = newVal;
+            }
+            persistPageCart();
+            updateGlobalCartBadge();
         }
     });
 
