@@ -5,8 +5,8 @@
     --accent-color: #e8b4b8;        /* Rose / Peachy */
     --bg-main: #fffcfb;             /* Very light nude */
     --bg-card: #ffffff;
-    --text-main: #4a403f;           /* Soft dark brown/grey */
-    --text-muted: #8b7d7b;
+    --text-main: #3a302f;           /* Deeper warm dark brown — more contrast */
+    --text-muted: #6b5c5a;          /* Darker muted for readability */
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
     --shadow-hover: 0 15px 35px rgba(244, 184, 184, 0.2);
     --transition: all 0.3s ease-in-out;
@@ -105,27 +105,106 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--shadow-hover);
 }
 
-/* Carousel */
-.carousel-item img {
-    height: 70vh;
+/* ── Hero Carousel ── */
+.hero-slide {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Image defines the slide height — all 3 slides identical */
+.hero-slide-img {
+    display: block;
+    width: 100%;
+    height: 75vh;
+    min-height: 320px;
     object-fit: cover;
     object-position: center;
 }
-.carousel-caption {
-    background: rgba(255, 252, 251, 0.85); /* Semi-transparent light nude */
-    backdrop-filter: blur(5px);
-    border-radius: 15px;
-    padding: 2rem;
-    color: var(--text-main);
-    bottom: 20%;
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: var(--shadow-soft);
+
+/* Overlay sits on top of image */
+.hero-slide-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
 }
 
-.carousel-caption h2 {
+/* Frosted glass content box — warm rose-brown to match AuraBloom palette */
+.hero-slide-box {
+    background: rgba(58, 28, 28, 0.58);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(244, 184, 184, 0.25);
+    border-radius: 18px;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    max-width: 560px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(58, 28, 28, 0.3);
+}
+
+.hero-slide-title {
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
     font-weight: 700;
-    color: var(--primary-color);
+    color: #fff !important;
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.hero-slide-text {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: clamp(0.88rem, 2vw, 1rem);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.hero-slide-btn {
+    display: inline-block;
+    padding: 0.6rem 1.6rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+.hero-slide-btn:hover {
+    background-color: var(--primary-hover);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+.hero-slide-btn-outline {
+    background-color: rgba(255,255,255,0.14);
+    border: 2px solid rgba(255,255,255,0.8);
+    color: #fff;
+}
+.hero-slide-btn-outline:hover {
+    background-color: rgba(255,255,255,0.28);
+    color: #fff;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .hero-slide-img {
+        height: 65vw;
+        min-height: 260px;
+    }
+    .hero-slide-box {
+        padding: 1.1rem 1.25rem;
+        border-radius: 14px;
+        max-width: 92%;
+    }
+    .hero-slide-btn {
+        padding: 0.48rem 1.1rem;
+        font-size: 0.82rem;
+    }
 }
 
 /* Cards */

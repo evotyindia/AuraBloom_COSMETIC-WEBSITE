@@ -15,28 +15,35 @@
 </head>
 <body>
 
-    <!-- Custom Navbar -->
-    <header class="site-header">
-        <div class="custom-container site-nav">
-            <a href="index.html" class="site-logo">
-                <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
-            </a>
-            <ul class="site-nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="tips.html">Tips</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="site-nav-actions">
-                <a href="products.html" class="custom-btn custom-btn-outline" style="position: relative;">
-                    <i class="fa-solid fa-shopping-cart"></i> Cart
-                    <span id="cart-counter" class="badge" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem;">0</span>
+    <!-- Responsive Bootstrap Navbar -->
+    <header class="site-header" style="padding: 0;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+            <div class="custom-container container-fluid px-3 px-md-4">
+                <a class="navbar-brand site-logo m-0" href="index.html">
+                    <i class="fa-solid fa-leaf text-primary-soft"></i> AuraBloom
                 </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation" style="border: none; outline: none;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-center" id="mainNavbar">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 site-nav-links mt-4 mt-lg-0" style="gap: 1rem;">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="products.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tips.html">Tips</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="site-nav-actions justify-content-center mt-3 mt-lg-0 pb-2 pb-lg-0">
+                        <a href="products.html" class="custom-btn custom-btn-outline" style="position: relative;">
+                            <i class="fa-solid fa-shopping-cart"></i> Cart
+                            <span id="cart-counter" class="badge" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem;">0</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
+        </nav>
     </header>
 
     <!-- Header -->

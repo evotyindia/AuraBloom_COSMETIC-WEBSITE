@@ -141,29 +141,29 @@ AuraBloom features **8 unique products** across 4 categories:
 
 | Product | Price |
 |---|---|
-| Velvet Rose Lipstick | Rs. 24.00 |
-| Luminous Foundation | Rs. 38.00 |
+| Velvet Rose Lipstick | Rs. 24,000 |
+| Luminous Foundation | Rs. 38,000 |
 
 ### 🧴 Skincare
 
 | Product | Price | Note |
 |---|---|---|
-| Hydrating Cloud Cream | Rs. 45.00 | ⭐ Bestseller |
-| Sheer Glow SPF 50 | Rs. 32.00 | |
+| Hydrating Cloud Cream | Rs. 45,000 | ⭐ Bestseller |
+| Sheer Glow SPF 50 | Rs. 32,000 | |
 
 ### 💇 Haircare
 
 | Product | Price | Note |
 |---|---|---|
-| Silk Drops Hair Oil | Rs. 28.00 | 🆕 New |
-| Volume Lift Shampoo | Rs. 22.00 | |
+| Silk Drops Hair Oil | Rs. 28,000 | 🆕 New |
+| Volume Lift Shampoo | Rs. 22,000 | |
 
 ### 🌸 Fragrance
 
 | Product | Price |
 |---|---|
-| Blush Eau De Parfum | Rs. 55.00 |
-| Refreshing Body Mist | Rs. 18.00 |
+| Blush Eau De Parfum | Rs. 55,000 |
+| Refreshing Body Mist | Rs. 18,000 |
 
 ---
 

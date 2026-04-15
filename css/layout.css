@@ -188,7 +188,20 @@ ul { list-style: none; padding: 0; margin: 0; }
 .product-card-btn { margin-top: auto; }
 
 /* Sections */
-.bg-secondary { background-color: var(--secondary-color); }
+/* Override Bootstrap's grey .bg-secondary with AuraBloom's warm beige */
+.bg-secondary { background-color: var(--secondary-color) !important; }
+
+/* Page header banners — warm gradient with high-contrast dark text */
+.page-header-banner {
+    background: linear-gradient(135deg, #eed6d3 0%, #f9ede8 50%, #fce8e8 100%);
+    border-bottom: 1px solid rgba(244, 184, 184, 0.3);
+}
+.page-header-banner h1,
+.page-header-banner h2,
+.page-header-banner p {
+    color: var(--text-main) !important;
+    text-shadow: none;
+}
 .bg-white { background-color: #fff; }
 .shadow-sm { box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important; }
 .rounded-4 { border-radius: 1rem !important; }
